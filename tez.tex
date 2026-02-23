@@ -1,0 +1,54 @@
+\documentclass{erciyes}
+
+%% ---------------------------------------------------------------
+%% Temel Paketler
+%% ---------------------------------------------------------------
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}      % Matematik sembolleri
+\usepackage{graphicx}             % Görsel ekleme
+\usepackage[dvipsnames]{xcolor} % Renkler
+\usepackage{float}                % Tablo/şekil konumlandırma (H)
+\usepackage{booktabs}             % Profesyonel tablolar
+\usepackage{multirow}             % Tablolarda hücre birleştirme
+\usepackage{array}                % Tablo ek ayarları (extrarowheight vb.)
+\usepackage{cite}                 % Atıflar
+\usepackage{setspace}             % Satır aralığı
+\usepackage{url}                  % URL formatlama
+\usepackage{mathptmx}             % Times New Roman yazı tipi (Metin ve Matematik)
+
+%% ---------------------------------------------------------------
+%% Tez Ayarları
+%% ---------------------------------------------------------------
+
+%% Tezinizin derecesini seçin:
+\DR                  % Doktora için \DR, Yüksek Lisans için \YL
+\ToCLineisDotted      % İçindekiler listesinde noktalı çizgiler olsun mu?
+\ToCChapterBold       % İçindekiler listesinde bölümler kalın olsun mu?
+
+%% Tez yazar, başlık ve jüri gibi tüm ayarlar bu dosyadan çekilir:
+\input{tanimlamalar.tex}
+
+%% ---------------------------------------------------------------
+%% TEZİN GÖVDESİ VE BÖLÜMLER
+%% ---------------------------------------------------------------
+
+\giris{\input{giris.tex}}
+
+\begin{document}
+
+  \input{bolum1.tex}
+  %\input{bolum2.tex}
+  %\input{bolum3.tex}
+  %\input{bolum4.tex}
+  %\input{bolum5.tex}
+
+  %% Kaynakça:
+  \bibliographystyle{erciyes}
+  \bibliography{referanslar}
+
+  %% Ekler bölümünü başlatmak için:
+  %\appendix
+  %\input{ek1.tex}
+
+\end{document}

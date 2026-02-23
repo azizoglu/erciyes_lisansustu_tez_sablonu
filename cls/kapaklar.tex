@@ -1,0 +1,93 @@
+%% kapaklar.tex — Dış kapak, iç kapak, boş sayfa ve giriş sayfası
+%% Yazar: Gökhan Azizoğlu
+%% Tarih: 21.02.2026
+
+\newcommand{\th@GirisSayfa}{
+\clearpage
+    \thispagestyle{empty}
+    \renewcommand\thefigure{G.\arabic{figure}}
+    \addcontentsline{toc}{tocKalin}{\protect\bf\girisToC}%
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+       \vspace*{33mm}
+       \th@BolumBaslik{GİRİŞ}
+    \end{list}
+    \vspace*{-4mm}
+    \sloppy
+     \th@GirisIcerik
+     \newpage\clearpage
+    \renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
+}
+
+\newcommand*{\th@DisKapakSayfa}{
+    \thispagestyle{empty}
+    \vspace*{-9mm}
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+        \centering\item[]
+        \th@KapakFont {T.C. \\[1mm] ERCİYES ÜNİVERSİTESİ \\[1mm] \th@EnstituUpper \ ENSTİTÜSÜ} \\[1mm] \th@AbdFont{\th@AnaBilimDaliUpper \ ANABİLİM DALI}
+        \vfill
+        \vspace*{9mm}
+        \th@KapakFont \th@Baslik
+        \vfill
+        \vspace*{4mm}
+        \th@KapakFont Hazırlayan \\
+        \th@KapakFont \th@YazarAdi
+        \vfill
+        \th@KapakFont Danışman \\
+        \th@KapakFont \th@Danisman
+        \ifthenelse{\equal{\th@IkinciDanisman}{}}{}{
+            \\[2mm]
+            \th@KapakFont İkinci Danışman \\
+            \th@KapakFont \th@IkinciDanisman
+        }
+        \vfill
+        \vspace*{-10mm}
+        \th@KapakFont \th@Derece \ Tezi
+        \vfill
+        \th@KapakFont \th@Tarih \\
+        \th@KapakFont KAYSERİ
+        \vspace*{-23mm}
+    \end{list}
+}
+
+\newcommand*{\th@IcKapakSayfa}{
+    \clearpage
+    \vspace*{-9mm}
+    \thispagestyle{empty}
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+        \centering\item[]
+        \th@KapakFont {T.C. \\[1mm] ERCİYES ÜNİVERSİTESİ \\[1mm] \th@EnstituUpper \ ENSTİTÜSÜ} \\[1mm] \th@AbdFont{\th@AnaBilimDaliUpper \ ANABİLİM DALI}
+        \vfill
+        \vspace*{10mm}
+        \th@KapakFont \th@Baslik \\
+        (\th@KapakFont \th@Derece \ Tezi)
+        \vfill
+        \vspace*{-8mm}
+        \th@KapakFont Hazırlayan \\
+        \th@KapakFont \th@YazarAdi
+        \vfill
+        \vspace*{-7mm}
+        \th@KapakFont Danışman \\
+        \th@KapakFont \th@Danisman
+        \ifthenelse{\equal{\th@IkinciDanisman}{}}{}{
+            \\[2mm]
+            \th@KapakFont İkinci Danışman \\
+            \th@KapakFont \th@IkinciDanisman
+        }
+        \vfill
+        \if@DestekVar
+        \th@DestekFont \th@Destek
+        \vfill
+        \fi
+        \th@KapakFont \th@Tarih \\
+        \th@KapakFont KAYSERİ
+        \vspace*{17mm}
+    \end{list}}
+
+\newcommand*{\th@BosSayfa}{
+    \clearpage
+    \vspace*{-14mm}
+    \thispagestyle{empty}
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+       \item[]
+    \end{list}}

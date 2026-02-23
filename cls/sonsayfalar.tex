@@ -1,0 +1,21 @@
+%% sonsayfalar.tex — Özgeçmiş gibi tezin sonunda yer alan sayfalar
+%% Yazar: Gökhan Azizoğlu
+%% Tarih: 21.02.2026
+
+\newcommand{\th@OzgecmisSayfa}{
+    \clearpage
+    \addcontentsline{toc}{tocKalin}{\protect\bf\ozgecmisToC}%
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+        \th@BolumStil ÖZGEÇMİŞ
+        \vspace*{10mm}
+    \end{list}
+    \vspace*{-5mm}
+    \sloppy
+    \th@OzgecmisIcerik
+}
+
+%% Özgeçmişin belgenin en sonunda otomatik çıkması için:
+\AtEndDocument{
+    \th@OzgecmisSayfa
+}

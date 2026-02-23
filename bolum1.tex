@@ -1,0 +1,44 @@
+\chapter{GENEL BİLGİLER VE LİTERATÜR ÖZETİ}
+
+Bu bölüm, tezin asıl gövde kısmının ilk bölümüdür. Tez çalışmasına konu olan problemin arka planı, teknik terimlerin açıklaması ve literatürdeki geçmiş çalışmalar genellikle bu ilk bölümde anlatılır. Makale referansı (\cite{azizoglu2024meld3}), bildiri referansı (\cite{azizoglu2021novel}), tez referansı (\cite{azizoglu2020tersinir}), elektronik kaynak referansı (\cite{azizogluGithub}),  kitap bölümü referansı( \cite{azizoglu2023qr}).
+
+\section{Çalışma Alanının Tanıtımı}
+Genel problemin tanıtıldığı ve temel kavramların (`equation`, `figure` vs. formunda) sunulduğu bölümdür.
+\begin{equation}
+E = mc^2
+\label{eq:ornekDenklem}
+\end{equation}
+
+\subsection{Alt Konular}
+Tez formatını test etmek için bir adet alt başlık. Denklem \ref{eq:ornekDenklem}'de görüldüğü gibi referans verilebilir.
+
+\subsubsection{Derinlere İndikçe}
+Gerekirse dördüncü veya beşinci seviye başlıklar da eklenebilir. 
+
+\begin{table}[H]
+    \centering
+    \caption{Popüler derin öğrenme modellerinin performans ve parametre karşılaştırması}
+    \begin{tabular}{llcc}
+        \toprule
+        \textbf{Model Adı} & \textbf{Yayın Yılı} & \textbf{Parametre Sayısı (Milyon)} & \textbf{Top-1 Doğruluk (\%)} \\
+        \midrule
+        VGG-16 & 2014 & 138.4 & 71.3 \\
+        ResNet-50 & 2015 & 25.6 & 74.9 \\
+        Inception-v3 & 2015 & 23.8 & 77.9 \\
+        DenseNet-121 & 2017 & 8.0 & 75.0 \\
+        EfficientNet-B0 & 2019 & 5.3 & 77.1 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:ornekTablo}
+\end{table}
+
+Tablo \ref{tab:ornekTablo}'da basit bir verinin LaTeX üzerinde profesyonel gösterimi sergilenmektedir. Tabloya veya diğer görsellere bu şekilde numara atayarak referans verebilirsiniz.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{ornek_sekil.png}
+    \caption{Derin öğrenme mimarilerinin temel yapısını gösteren örnek bir şekil.}
+    \label{fig:ornekSekil}
+\end{figure}
+
+Yine Şekil \ref{fig:ornekSekil}'de olduğu gibi tezin içindeki herhangi bir resme doğrudan gönderme yapabilirsiniz.

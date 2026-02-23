@@ -1,0 +1,162 @@
+%% listeler.tex — İçindekiler, tablo/şekil/sembol listeleri, kaynakça ve prolog
+%% Yazar: Gökhan Azizoğlu
+%% Tarih: 21.02.2026
+
+%% İçindekiler
+\renewcommand\tableofcontents{
+    \setlength{\bolumUstBosluk}{-5mm}
+    \chapter*{\fontfamily{ptm}\normalsize\selectfont  \centering \th@BolumStil İÇİNDEKİLER\normalfont\@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}
+    \pagestyle{plain}
+    \addcontentsline{toc}{tocKalin}{\protect\bf\icindekilerToC}
+   \begin{center}
+    \vspace*{3mm}
+    \th@AltBolumStil \th@Baslik
+    \vspace*{5mm}
+    \end{center}
+    \normalfont\normalsize
+    \setlength{\bolumUstBosluk}{35mm}
+    \newlength{\th@oldparskip}
+    \setlength{\th@oldparskip}{\parskip}
+    \setlength{\parskip}{\ToCparskip}
+    \@starttoc{toc}
+    \setlength{\parskip}{\th@oldparskip}
+    }
+
+%% Sembol listesi
+\newcommand\symbollist{
+    \setlength{\bolumUstBosluk}{-5mm}
+    \chapter*{\sembollerAdi\@mkboth{\MakeUppercase\sembollerAdi}{\MakeUppercase\sembollerAdi}}
+    \setlength{\bolumUstBosluk}{35mm}
+    \addcontentsline{toc}{tocKalin}{\protect\bf\sembolListesiToC}
+    \th@SembolListesiIcerik}
+
+%% Kısaltmalar listesi
+\newcommand\abbreviation{
+    \setlength{\bolumUstBosluk}{-5mm}
+    \chapter*{\kisaltmalarAdi\@mkboth{\MakeUppercase\kisaltmalarAdi}{\MakeUppercase\kisaltmalarAdi}}
+    \setlength{\bolumUstBosluk}{35mm}
+    \addcontentsline{toc}{tocKalin}{\protect\bf\kisaltmalarToC}
+    \th@KisaltmalarIcerik}
+
+%% Tablolar listesi
+\renewcommand\listoftables{
+    \setlength{\bolumUstBosluk}{-5mm}
+    \chapter*{\listtablename}
+    \setlength{\bolumUstBosluk}{35mm}
+    \@mkboth{\MakeUppercase\listtablename}{\MakeUppercase\listtablename}
+    \let\orig@numberline\numberline
+    \renewcommand*{\numberline}[1]{%
+    \orig@numberline{\tablename\ ##1.}}%
+    \addcontentsline{toc}{tocKalin}{\protect\bf\tabloListesiToC}
+    \setlength{\th@oldparskip}{\parskip}
+    \setlength{\parskip}{\LoTparskip}
+    \@starttoc{lot}
+    \setlength{\parskip}{\th@oldparskip}
+    \let\numberline\orig@numberline
+    }
+
+%% Şekiller listesi
+\renewcommand\listoffigures{
+    \setlength{\bolumUstBosluk}{-5mm}
+    \chapter*{\listfigurename}
+    \setlength{\bolumUstBosluk}{35mm}
+    \@mkboth{\MakeUppercase\listfigurename}{\MakeUppercase\listfigurename}
+    \let\orig@numberline\numberline
+    \renewcommand*{\numberline}[1]{%
+    \orig@numberline{\figurename\ ##1.}}%
+    \addcontentsline{toc}{tocKalin}{\protect\bf\sekilListesiToC}
+    \setlength{\th@oldparskip}{\parskip}
+    \setlength{\parskip}{\LoFparskip}
+    \@starttoc{lof}
+    \setlength{\parskip}{\th@oldparskip}
+    \let\numberline\orig@numberline
+    }
+
+%% Kaynakça etiketi
+\renewcommand{\@biblabel}[1]{#1.}
+
+%% Kaynakça ortamı
+\renewenvironment{thebibliography}[1]
+     {
+     \setlength{\bolumUstBosluk}{-5mm}
+    \chapter*{\centering\fontfamily{ptm}\normalsize\selectfont KAYNAKÇA\normalfont\@mkboth{\MakeUppercase\
+    contentsname}{\MakeUppercase\contentsname}}
+     \setlength{\bolumUstBosluk}{35mm}
+     \addcontentsline{toc}{tocKalin}{\protect\bf\kaynakcaToC}
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \advance\leftmargin by 1.5em
+            \setlength\itemindent{-1.5em}
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.=\@m
+     }
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+
+%% ---------------------------------------------------------------
+%% Tez Prolog — Tüm ön sayfaları sırasıyla oluşturur
+%% ---------------------------------------------------------------
+
+\newcommand{\th@TezOnBolum}{
+        \fontfamily{ptm}
+        \selectfont
+        \th@DisKapakSayfa
+        \th@BosSayfa
+        \th@IcKapakSayfa
+        \normalfont
+        \pagenumbering{roman}%
+        \setcounter{page}{1}
+        \th@EtikSayfa
+        \th@YonergeSayfa
+        \th@OnaySayfa
+        \if@TesekkurVar
+        \th@TesekkurSayfa
+        \fi
+        \th@OzetSayfa
+        \th@AbstractSayfa
+        \ToCspacing
+        \tableofcontents
+        \clearpage
+        \pagestyle{fancy}
+        \if@KisaltmalarVar
+        \abbreviation
+        \fi
+        \if@TabloListesiVar
+        \LoTspacing
+        \listoftables
+        \fi
+        \if@SekilListesiVar
+        \LoFspacing
+        \listoffigures
+        \fi
+        \if@SembolListesiVar
+        \symbollist
+        \fi    
+        \newpage
+        \pagenumbering{arabic}
+        \oneandonehalf
+        \th@GirisSayfa
+        \oneandonehalf
+    }
+
+%% Document hook — belge başlangıcında prolog'u otomatik çalıştırır
+\let\th@eskiDocument\document
+\renewcommand*{\document}{
+    \th@eskiDocument
+    \global\hfuzz=2pt\global\vfuzz=2pt\global\hbadness=10000\global\vbadness=10000
+    \th@TezOnBolum
+}
+
+%% Şekil başlıkları italik
+\captionsetup[figure]{labelfont=it,textfont=normalfont}

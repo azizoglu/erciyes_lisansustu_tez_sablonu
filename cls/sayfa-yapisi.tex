@@ -1,0 +1,146 @@
+%% Yazar: Gökhan Azizoğlu
+%% Tarih: 21.02.2026
+%% ---------------------------------------------------------------
+%% Sayfa düzeni, bayraklar, marjinler ayarları
+%% ---------------------------------------------------------------
+
+%% Heceleme Ayarları
+%% Heceleme için hyphenpenalty değerini değiştirebilirsiniz. 
+%% Değer küçüldükçe LaTeX hecelemeye daha yatkın olacak, büyüdükçe hecelemeden kaçınacaktır.
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+%% Özel Karakter Tanımlamaları
+\newcommand{\sol}{\textquotedblleft}          %% Sol tırnak
+\newcommand{\sag}{\textquotedblright}         %% Sağ tırnak 
+\newcommand{\sagb}{\sag\space}                %% Sağ tırnak ve sonrası bir boşluk
+
+%% Uzunluk Değişkenleri
+\newlength{\baslikGenisligi}
+\newlength{\metinGenisligi}
+
+%% Liste Paragraf Boşlukları
+\newlength{\LoFparskip}     %% Şekiller listesi paragraf boşluğu
+\setlength{\LoFparskip}{0em}
+
+\newlength{\LoTparskip}     %% Tablolar listesi paragraf boşluğu
+\setlength{\LoTparskip}{0em}
+
+\newlength{\ToCparskip}     %% İçindekiler listesi paragraf boşluğu
+\setlength{\ToCparskip}{0em}
+
+%% ---------------------------------------------------------------
+%% Kullanıcı Arayüz Komutları ve Durum Bayrakları
+%% ---------------------------------------------------------------
+
+\newif\if@EklerVar          %% Ekler bölümü eklendi mi?
+\@EklerVarfalse
+
+\newif\if@SembolListesiVar  %% Semboller listesi eklendi mi?
+\@SembolListesiVarfalse
+
+\newif\if@KisaltmalarVar  %% Kısaltmalar listesi eklendi mi?
+\@KisaltmalarVarfalse
+
+\newif\if@TabloListesiVar   %% Tablolar listesi üretilsin mi?
+\@TabloListesiVartrue       %% Varsayılan: Açık
+
+\newif\if@SekilListesiVar   %% Şekiller listesi üretilsin mi?
+\@SekilListesiVartrue       %% Varsayılan: Açık
+
+\newif\if@IcindekilerNoktaliVar   %% İçindekiler listesindeki madde sonuna yönlendiren noktalar olsun mu?
+\@IcindekilerNoktaliVarfalse      %% Varsayılan: Kapalı
+
+\newif\if@BolumBoldVar %% İçindekiler listesinde "BÖLÜM 1, 2" vs. kalın yazılsın mı?
+\@BolumBoldVartrue     %% Varsayılan: Açık (Kalın)
+
+\newif\if@DestekVar     %% İç kapakta finansal/proje desteği yazısı eklenecek mi?
+\@DestekVarfalse        %% Varsayılan: Kapalı
+
+\newif\if@OnayTarihVar   %% Jüri onay tarihi tezi yazan tarafından açıkça belirtilmiş mi?
+\@OnayTarihVarfalse      %% Varsayılan: Kapalı
+
+\newif\if@TesekkurVar   %% Teşekkür sayfası eklendi mi?
+\@TesekkurVarfalse      %% Varsayılan: Kapalı
+
+\newif\if@JuriVar       %% Jüri üye isimleri tezi yazan tarafından girilmiş mi?
+\@JuriVarfalse          %% Varsayılan: Kapalı
+
+\newif\if@DoktoraVar       %% Tezin derecesi Doktora mı, Yüksek Lisans mı?
+\@DoktoraVarfalse          %% Varsayılan: Yüksek Lisans
+
+%% Kullanım Kolaylığı Sağlayan Makrolar
+\newcommand*{\TabloListesiYok}{\@TabloListesiVarfalse}
+\newcommand*{\SekilListesiYok}{\@SekilListesiVarfalse}
+\newcommand*{\ToCLineisDotted}{\@IcindekilerNoktaliVartrue}
+\newcommand*{\ToCChapterBold}{\@BolumBoldVartrue}
+
+%% ---------------------------------------------------------------
+%% Satır Arası Genişlik ve Boşluk Ayarları
+%% ---------------------------------------------------------------
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]{\setlength{\baselineskip}{#1 \defbaselineskip}}
+
+\newcommand{\oneandonehalf}{\setlength{\baselineskip}{1.5 \defbaselineskip}}
+
+\newcommand{\LoFspacing}{\setlength{\baselineskip}{1.3 \defbaselineskip}}
+\newcommand{\LoTspacing}{\setlength{\baselineskip}{1.3 \defbaselineskip}}
+\newcommand{\ToCspacing}{\setlength{\baselineskip}{1.3 \defbaselineskip}}
+
+%% İçindekiler listesinde "BÖLÜM" yazısından önceki boşluk
+\newlength{\spacebeforechapterToC} 
+\setlength{\spacebeforechapterToC}{25pt}
+
+%% İçindekiler listesinde "BÖLÜM" yazısından sonraki boşluk
+\newlength{\spaceafterchapterToC} 
+\setlength{\spaceafterchapterToC}{20pt}
+
+%% ---------------------------------------------------------------
+%% Sayfa ve Marjin Yapısı Tanımlamaları
+%% ---------------------------------------------------------------
+\AtBeginDocument{
+        \setlength{\voffset}{-5.4mm}
+        \setlength{\hoffset}{14.6mm}
+        \setlength{\oddsidemargin}{-4.6mm}
+        \setlength{\evensidemargin}{-9.6mm}
+        \setlength{\topmargin}{0mm}
+        \setlength{\headheight}{10.0mm}
+        \setlength{\headsep}{5.0mm}
+        \setlength{\textheight}{242mm}
+        \setlength{\textwidth}{154mm}
+        \setlength{\marginparsep}{0mm}
+        \setlength{\marginparwidth}{0mm}
+        \setlength{\leftmargini}{1.25em}
+        \setlength{\leftmarginii}{2.2em}
+        \setlength{\leftmarginiii}{2.2em}
+        \setlength{\leftmarginiv}{2.2em}
+        \setlength{\leftmarginv}{2.2em}
+        \setlength{\leftmarginvi}{2.2em}
+        \setlength{\leftmargin}{0mm}
+        \setlength{\labelsep}{.5em}
+        \setlength{\labelwidth}{1.5em}
+        \setlength{\footskip}{5mm}
+        \setlength{\topskip}{0mm}
+        \setlength{\parindent}{0pt}         %% Paragraf girintisi kapalı
+        \setlength\parskip{10pt}            %% Paragraflar arası boşluk
+        \pagestyle{fancy}
+        \fancyhf{}
+        \renewcommand{\headrulewidth}{0pt}
+        \fancyhead[R]{\thepage}
+        \fancypagestyle{plain}{
+            \fancyhf{}
+            \fancyhead[R]{\thepage}
+            \renewcommand{\headrulewidth}{0pt}
+        }
+        \markright{}
+        \onecolumn
+        \raggedbottom
+        \normalsize
+        \normalfont
+        \oneandonehalf                      %% Bir buçuk satır aralığı
+        \setcounter{tocdepth}{5}            %% İçindekiler listesi derinliği
+        \setcounter{secnumdepth}{10}        %% Başlık numaralandırma derinliği
+        \renewcommand{\@dotsep}{1.0}        %% İçindekiler listesindeki noktaların sıklığını artırır
+        \renewcommand{\labelitemi}{$\bullet$} %% Madde imi noktalarını biraz daha küçük (orta boy) yapma
+}

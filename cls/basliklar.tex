@@ -1,0 +1,373 @@
+%% Yazar: Gökhan Azizoğlu
+%% Tarih: 21.02.2026
+%% ---------------------------------------------------------------
+%% Font ve Boyut Tanımları
+%% ---------------------------------------------------------------
+\newcommand*{\th@BaslikFont}{\fontfamily{ptm}\selectfont\bfseries}
+\newcommand*{\th@KapakFont}{\fontseries{b}\fontsize{16}{16}\selectfont}
+\newcommand*{\th@AbdFont}{\fontseries{b}\fontsize{14}{14}\selectfont}
+\newcommand*{\th@DestekFont}{\fontseries{b}\fontsize{14}{14}\selectfont}
+\newcommand*{\th@BolumBoyut}{\normalsize\fontsize{14}{14}\selectfont}
+\newcommand*{\th@AltBolumBoyut}{\normalsize\fontsize{12}{12}\selectfont}
+
+%% ---------------------------------------------------------------
+%% Başlık stilleri: Bölüm, Kısım, Alt Kısım vb.
+%% ---------------------------------------------------------------
+\newcommand*{\th@BolumStil}{\th@BaslikFont\th@BolumBoyut}
+\newcommand*{\th@AltBolumStil}{\th@BaslikFont\th@AltBolumBoyut}
+
+\newcommand*{\th@BolumOrtala}{\centering}
+\newcommand*{\th@BolumBaslik}[1]{\protect\th@BolumStil \protect\th@BolumOrtala #1}
+
+%% Özel ToC (İçindekiler) Başlıkları
+\newcommand*{\bolumToC}{BÖLÜM}
+\newcommand*{\icindekilerToC}{\fontfamily{ptm}\normalsize\selectfont İÇİNDEKİLER\normalfont}
+\newcommand*{\kisaltmalarToC}{\fontfamily{ptm}\normalsize\selectfont KISALTMALAR\normalfont}
+\newcommand*{\tabloListesiToC}{\fontfamily{ptm}\normalsize\selectfont TABLOLAR LİSTESİ\normalfont}
+\newcommand*{\sekilListesiToC}{\fontfamily{ptm}\normalsize\selectfont ŞEKİLLER LİSTESİ\normalfont}
+\newcommand*{\abstractToC}{\fontfamily{ptm}\normalsize\selectfont ABSTRACT\normalfont}
+\newcommand*{\onayToC}{\fontfamily{ptm}\normalsize\selectfont KABUL VE ONAY\normalfont}
+\newcommand*{\etikToC}{\fontfamily{ptm}\normalsize\selectfont BİLİMSEL ETİĞE UYGUNLUK SAYFASI\normalfont}
+\newcommand*{\yonergeToC}{\fontfamily{ptm}\normalsize\selectfont YÖNERGEYE UYGUNLUK SAYFASI\normalfont}
+\newcommand*{\ozetToC}{\fontfamily{ptm}\normalsize\selectfont ÖZET\normalfont}
+\newcommand*{\tesekkurToC}{\fontfamily{ptm}\normalsize\selectfont TEŞEKKÜR\normalfont}
+\newcommand*{\girisToC}{\fontfamily{ptm}\normalsize\selectfont GİRİŞ\normalfont}
+\newcommand*{\ozgecmisToC}{\fontfamily{ptm}\normalsize\selectfont ÖZGEÇMİŞ\normalfont}
+\newcommand*{\sembolListesiToC}{\fontfamily{ptm}\normalsize\selectfont SEMBOLLER LİSTESİ\normalfont}
+\newcommand*{\kaynakcaToC}{\fontfamily{ptm}\normalsize\selectfont KAYNAKÇA\normalfont}
+\newcommand*{\eklerToC}{\fontfamily{ptm}\normalsize\selectfont EKLER\normalfont}
+\newcommand*{\preappendixname}{EK}
+
+%% LaTeX standart başlık isimleri
+%% NOT: Bu isimler LaTeX'in dahili API'sidir.
+\def\abstractname{\th@BolumBaslik{ÖZET}}%
+\def\bibname{\th@BolumBaslik{KAYNAKÇA}}%
+\def\chaptername{\th@BolumBaslik{BÖLÜM}}%
+\def\appendixname{\th@BolumBaslik{EK}}%
+\def\contentsname{\th@BolumBaslik{İÇİNDEKİLER}}%
+\def\listfigurename{\th@BolumBaslik{ŞEKİLLER LİSTESİ}}%
+\def\listtablename{\th@BolumBaslik{TABLOLAR LİSTESİ}}%
+\def\figurename{Şekil}%
+\def\tablename{Tablo}%
+
+%% Özel başlık isimleri
+\def\sembollerAdi{\th@BolumBaslik{SEMBOLLER LİSTESİ}}
+\def\kisaltmalarAdi{\th@BolumBaslik{KISALTMALAR}}
+
+%% Numaralandırma biçimleri
+\newcommand*{\th@BolumNumarasi}{\arabic{chapter}}
+\newcommand*{\th@AltBolumNumarasi}{\th@BolumNumarasi.\arabic{section}}
+\newcommand*{\th@AltAltBolumNumarasi}{\th@AltBolumNumarasi.\arabic{subsection}}
+\newcommand*{\th@ParagrafBolumNumarasi}{\th@AltAltBolumNumarasi.\arabic{subsubsection}}
+\newcommand*{\th@AltParagrafNumarasi}{\th@ParagrafBolumNumarasi.\arabic{paragraph}}
+
+\renewcommand*{\thechapter}{\th@BolumNumarasi}
+\renewcommand*{\thesection}{\th@AltBolumNumarasi}
+\renewcommand*{\thesubsection}{\th@AltAltBolumNumarasi}
+\renewcommand*{\thesubsubsection}{\th@ParagrafBolumNumarasi}
+\renewcommand*{\theparagraph}{\th@AltParagrafNumarasi}
+
+%% İçindekiler Tablosu Çizgileri
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      #1 \nobreak
+       \if@IcindekilerNoktaliVar
+       \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{\bfseries .}\mkern \@dotsep
+         mu$}
+       \fi
+      \hfill\nobreak #2\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+  
+\def\@tocline#1#2#3#4#5{%
+  \vskip 10\p@
+  \ifnum #1>\c@tocdepth \else
+    \vskip \z@ \@plus.2\p@
+    {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+     \parindent #2\relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima #3\relax
+     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+     {#4}\nobreak
+     \if@IcindekilerNoktaliVar
+     \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{\bfseries .}\mkern \@dotsep
+          mu$}
+     \fi
+     \hfill
+     \nobreak
+     \nobreak\protect\bf#5
+     \par}%
+  \fi}
+
+\def\@toclinenonbold#1#2#3#4#5{%
+  \vskip 10\p@
+  \ifnum #1>\c@tocdepth \else
+    \vskip \z@ \@plus.2\p@
+    {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+     \parindent #2\relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima #3\relax
+     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+     {#4}\nobreak
+     \if@IcindekilerNoktaliVar
+     \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+          mu$}
+     \fi
+     \hfill
+     \nobreak
+     \nobreak#5
+     \par}%
+  \fi}
+
+\newcommand*\l@tocNormal{\@toclinenonbold{1}{0mm}{8mm}}
+\newcommand*\l@tocKalin{\@tocline{1}{0mm}{8mm}}
+\renewcommand*\l@section{\@tocline{1}{5mm}{8mm}}
+\renewcommand*\l@subsection{\@toclinenonbold{2}{10mm}{13mm}}
+\renewcommand*\l@subsubsection{\@toclinenonbold{3}{15mm}{18mm}}
+\renewcommand*\l@paragraph{\@tocline{4}{0mm}{4.1em}}
+\renewcommand*\l@table{\@toclinenonbold{1}{0mm}{5.5em}}
+\renewcommand*\l@figure\l@table
+
+\newcommand*\l@bolumbaslik[2]{%
+  \addpenalty{-\@highpenalty}%
+  \vskip \spacebeforechapterToC
+  {\centering \bfseries \fontsize{14}{16}\selectfont #1\par}
+  \vskip \spaceafterchapterToC
+}
+
+\newcommand*\l@bolumbasliknormal[2]{%
+  \addpenalty{-\@highpenalty}%
+  \vskip \spacebeforechapterToC
+  {\centering \fontsize{14}{16}\selectfont \bfseries #1\par}
+  \vskip \spaceafterchapterToC
+}
+
+%% Boşluk Ayarları
+\newlength{\bolumUstBosluk}
+\setlength{\bolumUstBosluk}{35mm}
+
+%% Section (Alt Bölüm) Tanımları
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+\def\numberedsection{\@ifnextchar[%]
+  \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+\def\unnumberedsection{\@ifnextchar[%]
+  \unnumberedsectionwithtwoarguments\unnumberedsectionwithoneargument}
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsectionwithoneargument#1{\unnumberedsectionwithtwoarguments[#1]{#1}}
+\def\numberedsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vspace*{7pt}\goodbreak
+  \refstepcounter{section}%
+  \noindent
+  \leavevmode
+  \begingroup
+  \th@BaslikFont\th@AltBolumBoyut
+  \hspace{-0.75em}
+  \begin{tabular}{ll} 
+  \thesection.\ & \parbox[t]{\textwidth - \widthof{\thesection.\ } - 1em}{#2}
+  \end{tabular}
+  \endgroup\goodbreak
+  \vspace*{-2mm}\goodbreak
+  \setlength{\baslikGenisligi}{\widthof{#2}}
+  \setlength{\metinGenisligi}{\textwidth - \widthof{\thesection.\ }}
+  \ifthenelse{\baslikGenisligi > \metinGenisligi}{\vspace{1em}}{}
+  \addcontentsline{toc}{section}{\protect\bf\protect\numberline{\thesection.}\protect\bf #1}}
+\def\unnumberedsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vspace*{15pt}\goodbreak
+  \noindent
+  \leavevmode
+  \begingroup
+  \bfseries
+  #2\quad
+  \endgroup\goodbreak
+  \addcontentsline{toc}{section}{\protect\bf #1}}
+    
+%% Subsection Tanımları
+\def\subsection{\@ifstar\unnumberedsubsection\numberedsubsection}
+\def\numberedsubsection{\@ifnextchar[%]
+  \numberedsubsectionwithtwoarguments\numberedsubsectionwithoneargument}
+\def\unnumberedsubsection{\@ifnextchar[%]
+  \unnumberedsubsectionwithtwoarguments\unnumberedsubsectionwithoneargument}
+\def\numberedsubsectionwithoneargument#1{\numberedsubsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsubsectionwithoneargument#1{\unnumberedsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vspace*{7pt}\goodbreak
+  \refstepcounter{subsection}%
+  \noindent
+  \leavevmode
+  \begingroup
+  \th@BaslikFont\th@AltBolumBoyut
+  \thesubsection.\ 
+  #2\quad
+  \endgroup\goodbreak
+  \vspace*{-2mm}\goodbreak
+  \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection.} #1}}
+\def\unnumberedsubsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vspace*{15pt}\goodbreak
+  \noindent
+  \leavevmode
+  \begingroup
+  \bfseries
+  #2\quad
+  \endgroup\goodbreak
+  \addcontentsline{toc}{subsection}{#1}}
+
+%% Subsubsection Tanımları
+\def\subsubsection{\@ifstar\unnumberedsubsubsection\numberedsubsubsection}
+\def\numberedsubsubsection{\@ifnextchar[%]
+  \numberedsubsubsectionwithtwoarguments\numberedsubsubsectionwithoneargument}
+\def\unnumberedsubsubsection{\@ifnextchar[%]
+  \unnumberedsubsubsectionwithtwoarguments\unnumberedsubsubsectionwithoneargument}
+\def\numberedsubsubsectionwithoneargument#1{\numberedsubsubsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsubsubsectionwithoneargument#1{\unnumberedsubsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsubsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+   \vspace*{7pt}\goodbreak
+  \refstepcounter{subsubsection}%
+  \noindent
+  \leavevmode
+  \begingroup
+  \th@BaslikFont\th@AltBolumBoyut
+  \thesubsubsection.\ 
+  #2\quad
+  \endgroup\goodbreak
+  \vspace*{-2mm}\goodbreak
+  \addcontentsline{toc}{subsubsection}{\protect\protect\numberline{\thesubsubsection.}\protect #1}}
+\def\unnumberedsubsubsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vspace*{15pt}\goodbreak
+  \noindent
+  \leavevmode
+  \begingroup
+  \bfseries
+  #2\quad
+  \endgroup\goodbreak
+  \addcontentsline{toc}{subsubsection}{\protect\bf #1}}
+
+%% Paragraph Tanımları
+\def\paragraph{\@ifstar\unnumberedparagraph\numberedparagraph}
+\def\numberedparagraph{\@ifnextchar[%]
+  \numberedparagraphwithtwoarguments\numberedparagraphwithoneargument}
+\def\unnumberedparagraph{\@ifnextchar[%]
+  \unnumberedparagraphwithtwoarguments\unnumberedparagraphwithoneargument}
+\def\numberedparagraphwithoneargument#1{\numberedparagraphwithtwoarguments[#1]{#1}}
+\def\numberedparagraphwithoneargument#1{\unnumberedparagraphwithtwoarguments[#1]{#1}}
+\def\numberedparagraphwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vspace*{15pt}\goodbreak
+  \refstepcounter{paragraph}%
+  \noindent
+  \leavevmode
+  \begingroup
+  \th@BaslikFont\th@AltBolumBoyut
+  \theparagraph.\ 
+  #2\quad
+  \endgroup\goodbreak
+  \addcontentsline{toc}{paragraph}{\protect\bf\protect\numberline{\theparagraph.}\protect\bf #1}}
+\def\unnumberedparagraphwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vspace*{15pt}\goodbreak
+  \noindent
+  \leavevmode
+  \begingroup
+  \bfseries
+  #2\quad
+  \endgroup\goodbreak
+  \addcontentsline{toc}{paragraph}{\protect\bf #1}}
+
+%% Ekler Tanımları (Appendix)
+\let\th@eskiAppendix\appendix
+\renewcommand\appendix{
+    \@EklerVartrue
+    \clearpage
+    \addcontentsline{toc}{tocKalin}{\protect\bf\eklerToC}
+    \th@eskiAppendix
+    \def\thechapter{\preappendixname-\arabic{chapter}}
+    \captionsetup [table]{listof=false}
+    \captionsetup [figure]{listof=false}
+}
+
+%% Chapter (Bölüm) Tanımları
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                      \global\@topnum\z@
+                      \@afterindentfalse
+                      \secdef\@chapter\@schapter}
+
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                         \refstepcounter{chapter}%
+            \if@EklerVar
+            \else
+                \if@BolumBoldVar
+                    \addcontentsline{toc}{bolumbaslik}{\thechapter. \bolumToC \protect\\[5pt] #1}
+                \else
+                    \addcontentsline{toc}{bolumbasliknormal}{\thechapter. \bolumToC \protect\\[5pt] #1}
+                \fi
+            \fi
+                    \else
+                      \relax
+                    \fi
+                    \chaptermark{#1}%
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+        \fi
+                    }
+
+\def\@makechapterhead#1{
+    \thispagestyle{empty}%
+    \vspace*{\bolumUstBosluk}%
+    \vspace*{-7mm}
+    {\parindent \z@ \centering 
+    \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \if@EklerVar
+            \th@BaslikFont\th@AltBolumBoyut \centering \thechapter
+        \else
+            {\bfseries\fontsize{14}{16}\selectfont \thechapter. \@chapapp} 
+        \fi
+        \par\nobreak
+        \vskip 10\p@
+    \fi
+    \interlinepenalty\@M
+    \th@BaslikFont\th@BolumBoyut #1\par\nobreak
+    \vskip 5\p@
+  }}
+
+\def\@schapter#1{
+    \@makeschapterhead{#1}
+    \@afterheading
+    }
+    
+\def\@makeschapterhead#1{%
+  \vspace*{\bolumUstBosluk}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \th@BaslikFont\th@AltBolumBoyut #1\par\nobreak
+    \vskip 20\p@}}

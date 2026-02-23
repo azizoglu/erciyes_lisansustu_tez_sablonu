@@ -1,0 +1,92 @@
+%% komutlar.tex — Kullanıcı komutları, hata mesajları ve içerik depolama
+%% Yazar: Gökhan Azizoğlu
+%% Tarih: 21.02.2026
+
+%% Veri depolama yardımcısı
+\newcommand{\th@Kaydet}[2]{\gdef#1{#2}}
+
+%% Derece tanımları
+\newcommand*{\YL}{
+    \@DoktoraVarfalse
+    \th@Kaydet{\th@DereceEng}{M.Sc.}
+    \th@Kaydet{\th@Derece}{Yüksek Lisans}}
+
+\newcommand*{\DR}{
+    \@DoktoraVartrue
+    \th@Kaydet{\th@DereceEng}{Ph.D.}
+    \th@Kaydet{\th@Derece}{Doktora}}
+
+%% Yazar bilgileri
+\newcommand*{\yazar}[2]{
+    \th@Kaydet{\th@YazarAdi}{#1 #2}
+}
+
+%% Jüri bilgileri
+\newcommand*{\juri}[5]{
+    \@JuriVartrue
+    \th@Kaydet{\th@JuriBir}{#1}
+    \th@Kaydet{\th@JuriIki}{#2}
+    \th@Kaydet{\th@JuriUc}{#3}
+    \th@Kaydet{\th@JuriDort}{#4}
+    \th@Kaydet{\th@JuriBes}{#5}
+}
+
+%% Danışman ve kurum bilgileri
+\newcommand{\danisman}[1]{\th@Kaydet{\th@Danisman}{#1}}
+\newcommand{\abdBaskani}[1]{\th@Kaydet{\th@AbdBaskani}{#1}}
+\newcommand{\danismanEng}[1]{\th@Kaydet{\th@DanismanEng}{#1}}
+\newcommand{\anaBilimDali}[1]{\th@Kaydet{\th@AnaBilimDali}{#1}}
+\newcommand{\anaBilimDaliUpper}[1]{\th@Kaydet{\th@AnaBilimDaliUpper}{#1}}
+\newcommand{\destek}[1]{\@DestekVartrue\th@Kaydet{\th@Destek}{#1}}
+\newcommand{\onayTarih}[1]{\@OnayTarihVartrue\th@Kaydet{\th@OnayTarih}{#1}}
+
+\newcommand{\enstituMuduru}[1]{\th@Kaydet{\th@EnstituMuduru}{#1}}
+
+%% Enstitü bilgileri (Fen Bilimleri sabit)
+\newcommand{\th@EnstituUpper}{FEN BİLİMLERİ}
+\newcommand{\th@EnstituLower}{Fen Bilimleri}
+\newcommand{\th@EnstituUpperEng}{GRADUATE SCHOOL OF NATURAL AND APPLIED SCIENCES}
+\newcommand{\th@EnstituLowerEng}{Graduate School of Natural and Applied Sciences}
+
+%% Başlık ve tarih
+\newcommand{\baslik}[1]{\th@Kaydet{\th@Baslik}{#1}}
+\newcommand{\baslikEng}[1]{\th@Kaydet{\th@BaslikEng}{#1}}
+\newcommand{\baslikCumle}[1]{\th@Kaydet{\th@BaslikCumle}{#1}}
+\newcommand{\tarih}[1]{\th@Kaydet{\th@Tarih}{#1}}
+\newcommand{\tarihEng}[1]{\th@Kaydet{\th@TarihEng}{#1}}
+
+%% İkinci danışman
+\newcommand{\th@IkinciDanisman}{}
+\newcommand{\th@IkinciDanismanEng}{}
+
+\newcommand{\ikinciDanisman}[1]{%
+    \th@Kaydet{\th@IkinciDanisman}{#1}}
+
+\newcommand{\ikinciDanismanEng}[1]{%
+    \th@Kaydet{\th@IkinciDanismanEng}{#1}}
+
+\newcommand*{\th@Baslik}{}
+\newcommand*{\th@BaslikEng}{}
+\newcommand*{\th@BaslikCumle}{}
+\newcommand*{\th@Tarih}{}
+\newcommand*{\th@TarihEng}{}
+\newcommand*{\th@Danisman}{}
+\newcommand*{\th@AbdBaskani}{}
+\newcommand*{\th@DanismanEng}{}
+\newcommand*{\th@YazarAdi}{}
+\newcommand*{\th@Derece}{}
+\newcommand{\th@AbstractIcerik}{}
+\newcommand{\th@OzetIcerik}{}
+\newcommand{\th@AnaBilimDali}{}
+\newcommand{\th@EnstituMuduru}{}
+\newcommand{\th@AnaBilimDaliUpper}{}
+\newcommand{\th@OzgecmisIcerik}{}
+
+%% İçerik depolama komutları
+\newcommand{\ozetEng}[1]{\th@Kaydet{\th@AbstractIcerik}{#1}}
+\newcommand{\ozet}[1]{\th@Kaydet{\th@OzetIcerik}{#1}}
+\newcommand{\ozgecmis}[1]{\th@Kaydet{\th@OzgecmisIcerik}{#1}}
+\newcommand{\tesekkur}[1]{\@TesekkurVartrue\th@Kaydet{\th@TesekkurIcerik}{#1}}
+\newcommand{\giris}[1]{\th@Kaydet{\th@GirisIcerik}{#1}}
+\newcommand{\sembolListesi}[1]{\@SembolListesiVartrue\th@Kaydet{\th@SembolListesiIcerik}{#1}}
+\newcommand{\kisaltmalar}[1]{\@KisaltmalarVartrue\th@Kaydet{\th@KisaltmalarIcerik}{#1}}

@@ -1,0 +1,168 @@
+%% onsayfalar.tex — Onay, uygunluk, yönerge, abstract, özet, özgeçmiş, teşekkür sayfaları
+%% Yazar: Gökhan Azizoğlu
+%% Tarih: 21.02.2026
+
+\newcommand{\th@OnaySayfa}{
+    \clearpage
+    \begin{minipage}[t]{\textwidth}
+    \oneandonehalf
+    \vspace*{5mm}
+     \textbf{\th@Danisman} danışmanlığında \textbf{\th@YazarAdi} tarafından hazırlanan \textbf{\textquotedblleft\th@BaslikCumle\textquotedblright} adlı bu çalışma, jürimiz tarafından Erciyes Üniversitesi \th@EnstituLower\ Enstitüsü \textbf{\th@AnaBilimDali} Anabilim Dalında \textbf{\th@Derece} tezi olarak kabul edilmiştir. \end{minipage}
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+        \vspace*{15mm}
+        {\raggedleft \if@OnayTarihVar \th@OnayTarih \else .... / .... / ....... \fi \par}
+        \vfill
+        \raggedright{
+        \begin{tabular*}{\textwidth}{@{}lll@{\extracolsep{\fill}}r@{}}
+        \multicolumn{4}{@{}l}{\textbf{JÜRİ :}} \\ [12pt]
+        Danışman & \multicolumn{1}{c}{:} & \if@JuriVar \th@JuriBir \else ........................................... \fi & ........................................................\\[25pt]
+        Üye & \multicolumn{1}{c}{:} & \if@JuriVar \th@JuriIki \else ........................................... \fi & ........................................................\\[25pt]
+        Üye & \multicolumn{1}{c}{:} & \if@JuriVar \th@JuriUc \else ........................................... \fi & ........................................................\\[25pt]
+        \if@DoktoraVar
+        Üye & \multicolumn{1}{c}{:} & \if@JuriVar \th@JuriDort \else ........................................... \fi & ........................................................\\[25pt]
+        Üye & \multicolumn{1}{c}{:} & \if@JuriVar \th@JuriBes \else ........................................... \fi & ........................................................\\
+        \fi
+        \end{tabular*}}
+        \vfill
+        \vspace*{15mm}
+        ONAY :\\[5mm]
+        Bu tezin kabulü Enstitü Yönetim Kurulu'nun ................ tarih ve .................. 
+        sayılı kararı ile onaylanmıştır.\par
+        \vspace*{10mm}
+        \vfill
+        \raggedleft{
+      \newlength{\widthofmudur}
+      \settowidth{\widthofmudur}{{\th@EnstituMuduru}}
+    \vspace{\baselineskip}
+      \parbox{\widthofmudur}{\centering
+          {.... / .... / ........} \\[1\baselineskip]
+          {\th@EnstituMuduru} \\[1\baselineskip]
+          {Enstitü Müdürü}
+      } 
+        }
+        \vspace*{10mm}
+    \end{list}
+    \addcontentsline{toc}{tocKalin}{\protect\bf\onayToC}%
+}
+
+\newcommand{\th@EtikSayfa}{
+    \clearpage
+    \begin{minipage}[t]{\textwidth}
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+    \th@BolumStil BİLİMSEL ETİĞE UYGUNLUK
+    \end{list}
+    \vspace*{10mm}
+    \oneandonehalf
+    Bu çalışmadaki tüm bilgilerin, akademik ve etik kurallara uygun bir şekilde elde edildiğini beyan ederim. Aynı zamanda bu kural ve davranışların gerektirdiği gibi, bu çalışmanın özünde olmayan tüm materyal ve sonuçları tam olarak aktardığımı ve referans gösterdiğimi belirtirim.
+    \end{minipage}
+    \vspace{18mm}
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \item[]
+    \begin{tabular*}{\textwidth}{c@{\extracolsep{\fill}}c}
+    \th@YazarAdi \\
+    \end{tabular*}
+    \end{list}
+    \addcontentsline{toc}{tocKalin}{\protect\bf\etikToC}%
+}
+
+\newcommand{\th@YonergeSayfa}{
+    \clearpage
+    \vspace*{-19mm}
+    \begin{minipage}[t]{\textwidth}
+    \vspace*{7mm}
+    	
+	\oneandonehalf
+    \textbf{\textquotedblleft\th@BaslikCumle\textquotedblright}  adlı
+    \th@Derece\ Tezi, Erciyes Üniversitesi Lisansüstü Tez Önerisi ve Tez Yazma Yönergesi'ne uygun olarak hazırlanmıştır.
+    \end{minipage}
+    \vspace{35mm}
+    
+    \noindent
+    \begin{tabular*}{\textwidth}{@{}c@{\extracolsep{\fill}}c@{}}
+    \textbf {Hazırlayan} & \textbf {Danışman} \\ [3mm]
+    \th@YazarAdi & \th@Danisman \\
+    \end{tabular*}
+    
+    \vspace{50mm}
+    
+    \begin{center}
+    \begin{tabular}{c}
+    \textbf {\th@AnaBilimDali\ ABD Başkanı} \\ [3mm]
+    \th@AbdBaskani \\
+    \end{tabular}
+    \end{center}
+    \vspace*{10mm}
+    \addcontentsline{toc}{tocKalin}{\protect\bf\yonergeToC}%
+}
+
+\newcommand{\th@AbstractSayfa}{
+  \newpage
+    \clearpage
+    \addcontentsline{toc}{tocKalin}{\protect\bf\abstractToC}%
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+      \vfill
+        \th@AltBolumStil \MakeUppercase\th@BaslikEng\\[5mm]
+        \textbf \makebox{\th@YazarAdi}\\[5mm]
+        \textbf \makebox{Erciyes University, \th@EnstituLowerEng} \\[2pt]
+        \textbf \makebox{\th@DereceEng\ Thesis, \th@TarihEng}\\[2pt]
+        \textbf \makebox{Supervisor: \th@DanismanEng}
+         \ifthenelse{\equal{\th@IkinciDanismanEng}{}}{}{
+             \\
+             \textbf \makebox{Co-Supervisor: \th@IkinciDanismanEng}
+         }
+        \\[10mm]
+        \th@BolumStil ABSTRACT
+    \end{list}
+    \vspace*{-5mm}
+    \sloppy
+    \th@AbstractIcerik
+}
+
+\newcommand{\th@OzetSayfa}{
+  \newpage
+    \clearpage
+    \addcontentsline{toc}{tocKalin}{\protect\bf\ozetToC}%
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+        \vfill
+        \th@AltBolumStil \th@Baslik\\[5mm]
+        \textbf \makebox{\th@YazarAdi}\\[5mm]
+        \textbf \makebox{Erciyes Üniversitesi, \th@EnstituLower\ Enstitüsü} \\[2pt]
+        \textbf \makebox{\th@Derece\ Tezi, \th@Tarih}\\[2pt]
+        \textbf \makebox{Danışman : \th@Danisman}
+        \ifthenelse{\equal{\th@IkinciDanisman}{}}{}{
+            \\
+            \textbf \makebox{İkinci Danışman: \th@IkinciDanisman}
+        }
+        \\[10mm]
+        \th@BolumStil ÖZET
+    \end{list}
+    \vspace*{-7mm}
+    \sloppy
+    \th@OzetIcerik
+}
+
+\newcommand{\th@TesekkurSayfa}{
+    \clearpage
+    \addcontentsline{toc}{tocKalin}{\protect\bf\tesekkurToC}%
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+        \th@BolumStil TEŞEKKÜR
+        \vspace*{10mm}
+    \end{list}
+    \vspace*{-5mm}
+    \sloppy
+    \th@TesekkurIcerik
+
+\vspace{15mm}
+    \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
+    \centering\item[]
+    \begin{tabular*}{\textwidth}{cc@{\extracolsep{\fill}}c}
+     & & \th@YazarAdi \\[1.5em]
+    & & \th@Tarih, KAYSERİ
+    \end{tabular*}
+    \end{list}
+}
