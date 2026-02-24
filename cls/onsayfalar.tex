@@ -104,14 +104,14 @@
     \begin{list}{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}
     \centering\item[]
       \vfill
-        \th@AltBolumStil \MakeUppercase\th@BaslikEng\\[5mm]
+        \th@AltBolumStil \foreignlanguage{english}{\MakeTextUppercase{\th@BaslikEng}}\\[5mm]
         \textbf \makebox{\th@YazarAdi}\\[5mm]
-        \textbf \makebox{Erciyes University, \th@EnstituLowerEng} \\[2pt]
-        \textbf \makebox{\th@DereceEng\ Thesis, \th@TarihEng}\\[2pt]
-        \textbf \makebox{Supervisor: \th@DanismanEng}
+        \textbf \makebox{\foreignlanguage{english}{Erciyes University, \th@EnstituLowerEng}} \\[2pt]
+        \textbf \makebox{\foreignlanguage{english}{\th@DereceEng\ Thesis, \th@TarihEng}}\\[2pt]
+        \textbf \makebox{\foreignlanguage{english}{Supervisor: \th@DanismanEng}}
          \ifthenelse{\equal{\th@IkinciDanismanEng}{}}{}{
              \\
-             \textbf \makebox{Co-Supervisor: \th@IkinciDanismanEng}
+             \textbf \makebox{\foreignlanguage{english}{Co-Supervisor: \th@IkinciDanismanEng}}
          }
         \\[10mm]
         \th@BolumStil ABSTRACT

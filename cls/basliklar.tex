@@ -7,8 +7,8 @@
 \newcommand*{\th@KapakFont}{\fontseries{b}\fontsize{16}{16}\selectfont}
 \newcommand*{\th@AbdFont}{\fontseries{b}\fontsize{14}{14}\selectfont}
 \newcommand*{\th@DestekFont}{\fontseries{b}\fontsize{14}{14}\selectfont}
-\newcommand*{\th@BolumBoyut}{\normalsize\fontsize{14}{14}\selectfont}
-\newcommand*{\th@AltBolumBoyut}{\normalsize\fontsize{12}{12}\selectfont}
+\newcommand*{\th@BolumBoyut}{\normalsize\fontsize{14}{16}\selectfont}
+\newcommand*{\th@AltBolumBoyut}{\normalsize\fontsize{12}{14}\selectfont}
 
 %% ---------------------------------------------------------------
 %% Başlık stilleri: Bölüm, Kısım, Alt Kısım vb.
@@ -40,19 +40,21 @@
 
 %% LaTeX standart başlık isimleri
 %% NOT: Bu isimler LaTeX'in dahili API'sidir.
-\def\abstractname{\th@BolumBaslik{ÖZET}}%
-\def\bibname{\th@BolumBaslik{KAYNAKÇA}}%
-\def\chaptername{\th@BolumBaslik{BÖLÜM}}%
-\def\appendixname{\th@BolumBaslik{EK}}%
-\def\contentsname{\th@BolumBaslik{İÇİNDEKİLER}}%
-\def\listfigurename{\th@BolumBaslik{ŞEKİLLER LİSTESİ}}%
-\def\listtablename{\th@BolumBaslik{TABLOLAR LİSTESİ}}%
-\def\figurename{Şekil}%
-\def\tablename{Tablo}%
+\addto\captionsturkish{
+  \def\abstractname{ÖZET}%
+  \def\bibname{KAYNAKÇA}%
+  \def\chaptername{BÖLÜM}%
+  \def\appendixname{EK}%
+  \def\contentsname{İÇİNDEKİLER}%
+  \def\listfigurename{ŞEKİLLER LİSTESİ}%
+  \def\listtablename{TABLOLAR LİSTESİ}%
+  \def\figurename{Şekil}%
+  \def\tablename{Tablo}%
+}
 
 %% Özel başlık isimleri
-\def\sembollerAdi{\th@BolumBaslik{SEMBOLLER LİSTESİ}}
-\def\kisaltmalarAdi{\th@BolumBaslik{KISALTMALAR}}
+\def\sembollerAdi{SEMBOLLER LİSTESİ}
+\def\kisaltmalarAdi{KISALTMALAR}
 
 %% Numaralandırma biçimleri
 \newcommand*{\th@BolumNumarasi}{\arabic{chapter}}
@@ -322,9 +324,9 @@
             \if@EklerVar
             \else
                 \if@BolumBoldVar
-                    \addcontentsline{toc}{bolumbaslik}{\thechapter. \bolumToC \protect\\[5pt] #1}
+                    \addcontentsline{toc}{bolumbaslik}{\thechapter. \bolumToC \protect\\[5pt] \MakeTextUppercase{#1}}
                 \else
-                    \addcontentsline{toc}{bolumbasliknormal}{\thechapter. \bolumToC \protect\\[5pt] #1}
+                    \addcontentsline{toc}{bolumbasliknormal}{\thechapter. \bolumToC \protect\\[5pt] \MakeTextUppercase{#1}}
                 \fi
             \fi
                     \else
@@ -347,15 +349,15 @@
     \normalfont
     \ifnum \c@secnumdepth >\m@ne
         \if@EklerVar
-            \th@BaslikFont\th@AltBolumBoyut \centering \thechapter
+            \th@BaslikFont\th@BolumBoyut \centering \MakeTextUppercase{\thechapter}
         \else
-            {\bfseries\fontsize{14}{16}\selectfont \thechapter. \@chapapp} 
+            \th@BaslikFont\th@BolumBoyut \MakeTextUppercase{\thechapter. \@chapapp}
         \fi
         \par\nobreak
         \vskip 10\p@
     \fi
     \interlinepenalty\@M
-    \th@BaslikFont\th@BolumBoyut #1\par\nobreak
+    \th@BaslikFont\th@BolumBoyut \MakeTextUppercase{#1}\par\nobreak
     \vskip 5\p@
   }}
 
@@ -366,8 +368,8 @@
     
 \def\@makeschapterhead#1{%
   \vspace*{\bolumUstBosluk}%
-  {\parindent \z@ \raggedright
+  {\parindent \z@ \centering
     \normalfont
     \interlinepenalty\@M
-    \th@BaslikFont\th@AltBolumBoyut #1\par\nobreak
+    \th@BaslikFont\th@BolumBoyut \MakeTextUppercase{#1}\par\nobreak
     \vskip 20\p@}}

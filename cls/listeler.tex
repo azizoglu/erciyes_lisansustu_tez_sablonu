@@ -5,7 +5,7 @@
 %% İçindekiler
 \renewcommand\tableofcontents{
     \setlength{\bolumUstBosluk}{-5mm}
-    \chapter*{\fontfamily{ptm}\normalsize\selectfont  \centering \th@BolumStil İÇİNDEKİLER\normalfont\@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}
+    \chapter*{\contentsname\@mkboth{\MakeTextUppercase\contentsname}{\MakeTextUppercase\contentsname}}
     \pagestyle{plain}
     \addcontentsline{toc}{tocKalin}{\protect\bf\icindekilerToC}
    \begin{center}
@@ -25,7 +25,7 @@
 %% Sembol listesi
 \newcommand\symbollist{
     \setlength{\bolumUstBosluk}{-5mm}
-    \chapter*{\sembollerAdi\@mkboth{\MakeUppercase\sembollerAdi}{\MakeUppercase\sembollerAdi}}
+    \chapter*{\sembollerAdi\@mkboth{\MakeTextUppercase\sembollerAdi}{\MakeTextUppercase\sembollerAdi}}
     \setlength{\bolumUstBosluk}{35mm}
     \addcontentsline{toc}{tocKalin}{\protect\bf\sembolListesiToC}
     \th@SembolListesiIcerik}
@@ -33,7 +33,7 @@
 %% Kısaltmalar listesi
 \newcommand\abbreviation{
     \setlength{\bolumUstBosluk}{-5mm}
-    \chapter*{\kisaltmalarAdi\@mkboth{\MakeUppercase\kisaltmalarAdi}{\MakeUppercase\kisaltmalarAdi}}
+    \chapter*{\kisaltmalarAdi\@mkboth{\MakeTextUppercase\kisaltmalarAdi}{\MakeTextUppercase\kisaltmalarAdi}}
     \setlength{\bolumUstBosluk}{35mm}
     \addcontentsline{toc}{tocKalin}{\protect\bf\kisaltmalarToC}
     \th@KisaltmalarIcerik}
@@ -43,7 +43,7 @@
     \setlength{\bolumUstBosluk}{-5mm}
     \chapter*{\listtablename}
     \setlength{\bolumUstBosluk}{35mm}
-    \@mkboth{\MakeUppercase\listtablename}{\MakeUppercase\listtablename}
+    \@mkboth{\MakeTextUppercase\listtablename}{\MakeTextUppercase\listtablename}
     \let\orig@numberline\numberline
     \renewcommand*{\numberline}[1]{%
     \orig@numberline{\tablename\ ##1.}}%
@@ -60,7 +60,7 @@
     \setlength{\bolumUstBosluk}{-5mm}
     \chapter*{\listfigurename}
     \setlength{\bolumUstBosluk}{35mm}
-    \@mkboth{\MakeUppercase\listfigurename}{\MakeUppercase\listfigurename}
+    \@mkboth{\MakeTextUppercase\listfigurename}{\MakeTextUppercase\listfigurename}
     \let\orig@numberline\numberline
     \renewcommand*{\numberline}[1]{%
     \orig@numberline{\figurename\ ##1.}}%
@@ -79,11 +79,10 @@
 \renewenvironment{thebibliography}[1]
      {
      \setlength{\bolumUstBosluk}{-5mm}
-    \chapter*{\centering\fontfamily{ptm}\normalsize\selectfont KAYNAKÇA\normalfont\@mkboth{\MakeUppercase\
-    contentsname}{\MakeUppercase\contentsname}}
+     \chapter*{\bibname\@mkboth{\MakeTextUppercase\bibname}{\MakeTextUppercase\bibname}}
      \setlength{\bolumUstBosluk}{35mm}
      \addcontentsline{toc}{tocKalin}{\protect\bf\kaynakcaToC}
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \@mkboth{\MakeTextUppercase\bibname}{\MakeTextUppercase\bibname}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
