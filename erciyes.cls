@@ -1,10 +1,10 @@
 %% erciyes.cls — Erciyes Üniversitesi Fen Bilimleri Enstitüsü Tez Sınıfı
 %% Yazar: Gökhan Azizoğlu
 %% Tarih: 21.04.2026
-%% Sürüm: v2.1.0 (2026-04-21)
+%% Sürüm: v2.1.1 (2026-04-21)
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{erciyes}[2026/04/21 v2.1.0 Erciyes Tez Sinifi]
+\ProvidesClass{erciyes}[2026/04/21 v2.1.1 Erciyes Tez Sinifi]
 \LoadClass[a4paper,oneside,onecolumn,12pt]{report}[1996/10/31]
 
 %% ---------------------------------------------------------------
@@ -20,7 +20,7 @@
 \RequirePackage{calc}
 \RequirePackage{tabularx}
 \captionsetup [table]{position=top, aboveskip=5pt, belowskip=5pt}
-\captionsetup [figure]{position=bottom, aboveskip=12pt, belowskip=-12pt}
+\captionsetup [figure]{position=bottom, aboveskip=12pt, belowskip=0pt}
 
 %% ---------------------------------------------------------------
 %% Sınıf seçenekleri

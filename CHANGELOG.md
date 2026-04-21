@@ -2,6 +2,9 @@
 
 Bu dosya, Erciyes Üniversitesi Fen Bilimleri Enstitüsü Doktora/Yüksek Lisans Tez Şablonu'ndaki sürüm güncellemelerini listelemektedir.
 
+## [v2.1.1] — 2026-04-21
+- Şekil açıklamaları (`\caption`) ile sonraki paragraf arasındaki boşluk düzenlendi: `caption` paketindeki `belowskip=-12pt` (negatif boşluk) değeri `belowskip=0pt` olarak güncellendi ve şekil başlığının altında tek satırlık paragraf boşluğu eklendi.
+
 ## [v2.1.0] — 2026-04-21
 - `inputenc` paketi, deprecated olan `utf8x` seçeneği yerine standart `utf8` ile yüklenecek şekilde güncellendi; modern TeX Live dağıtımlarıyla tam uyumluluk sağlandı.
 - Türkçe `babel` dilinin `=` kısayolunun (shorthand) `\includegraphics[width=\linewidth]` gibi `key=value` ifadelerini bozmasına yol açan çakışma giderildi: `babel`, `main=turkish` ve `shorthands=off` seçenekleriyle yüklenecek şekilde güncellendi.
