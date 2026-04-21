@@ -2,6 +2,12 @@
 
 Bu dosya, Erciyes Üniversitesi Fen Bilimleri Enstitüsü Doktora/Yüksek Lisans Tez Şablonu'ndaki sürüm güncellemelerini listelemektedir.
 
+## [v2.1.0] — 2026-04-21
+- `inputenc` paketi, deprecated olan `utf8x` seçeneği yerine standart `utf8` ile yüklenecek şekilde güncellendi; modern TeX Live dağıtımlarıyla tam uyumluluk sağlandı.
+- Türkçe `babel` dilinin `=` kısayolunun (shorthand) `\includegraphics[width=\linewidth]` gibi `key=value` ifadelerini bozmasına yol açan çakışma giderildi: `babel`, `main=turkish` ve `shorthands=off` seçenekleriyle yüklenecek şekilde güncellendi.
+- `tez.tex` dosyasındaki gereksiz ve çakışmaya yol açan `\usepackage[utf8x]{inputenc}` ve `\usepackage[T1]{fontenc}` satırları kaldırıldı; bu paketler yalnızca `erciyes.cls` içinden yüklenir hâle getirildi.
+- Şekil ve tablo ortamlarında `width=\linewidth` / `width=\textwidth` kullanıldığında ortaya çıkan `Missing \endcsname`, `Missing number` ve `Illegal unit of measure` hataları düzeltildi.
+
 ## [v2.0.1] — 2026-02-24
 - Bölüm başlıkları (chapter) otomatik olarak büyük harfe çevrilecek şekilde güncellendi (\MakeUppercase).
 - Bölüm giriş metinlerinin yazı boyutu 14 punto olarak standartlaştırıldı ve hizalamalar iyileştirildi.

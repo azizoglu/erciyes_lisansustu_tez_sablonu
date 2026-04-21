@@ -1,19 +1,19 @@
 %% erciyes.cls — Erciyes Üniversitesi Fen Bilimleri Enstitüsü Tez Sınıfı
 %% Yazar: Gökhan Azizoğlu
-%% Tarih: 24.02.2026
-%% Sürüm: v2.0.1 (2026-02-24)
+%% Tarih: 21.04.2026
+%% Sürüm: v2.1.0 (2026-04-21)
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{erciyes}[2026/02/24 v2.0.1 Erciyes Tez Sinifi]
+\ProvidesClass{erciyes}[2026/04/21 v2.1.0 Erciyes Tez Sinifi]
 \LoadClass[a4paper,oneside,onecolumn,12pt]{report}[1996/10/31]
 
 %% ---------------------------------------------------------------
 %% Gerekli paketler
 %% ---------------------------------------------------------------
 \RequirePackage{ifthen}
-\RequirePackage[utf8x]{inputenc}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage[english,turkish]{babel}
+\RequirePackage[main=turkish,english,shorthands=off]{babel}
 \RequirePackage{textcase}
 \RequirePackage{fancyhdr}
 \RequirePackage[hang,labelsep=period]{caption}
