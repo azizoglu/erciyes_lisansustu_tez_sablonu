@@ -1,7 +1,7 @@
-# Erciyes Üniversitesi Fen Bilimleri Enstitüsü Lisansüstü Tez Şablonu
-
 ![Sürüm](https://img.shields.io/badge/S%C3%BCr%C3%BCm-v2.1.1-blue.svg)
 ![Güncellik](https://img.shields.io/badge/G%C3%BCncellik-23.02.2026_k%C4%B1lavuzu_ile_uyumlu-brightgreen.svg)
+[![Toplam İndirme](https://img.shields.io/github/downloads/azizoglu/erciyes_lisansustu_tez_sablonu/total?label=Toplam%20indirme&color=orange)](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases)
+[![v2.1.1 indirme](https://img.shields.io/github/downloads/azizoglu/erciyes_lisansustu_tez_sablonu/v2.1.1/total?label=v2.1.1%20indirme&color=blue)](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases/download/v2.1.1/erciyes_lisansustu_tez_sablonu-2.1.1.zip)
 
 Bu şablon, Erciyes Üniversitesi Fen Bilimleri Enstitüsü tez yazım kurallarına uygun olarak Doktora ve Yüksek Lisans tezlerini **LaTeX** ortamında pratik bir şekilde hazırlanabilmesi için oluşturulmuştur. Şablon, **23.02.2026 itibari ile güncel Fen Bilimleri Enstitüsü tez yazım kılavuzu ve şablonu gözetilerek** hazırlanmıştır.
 
@@ -11,6 +11,13 @@ Bu şablon, Erciyes Üniversitesi Fen Bilimleri Enstitüsü tez yazım kurallar�
 ## Geliştirici ve Teşekkür
 Güncel kılavuza uygun olan bu sürüm (v2.1.1), **Gökhan Azizoğlu** tarafından hazırlanmıştır.
 Geçmiş versiyonlarda ilk altyapıyı oluşturan ve kodlara değerli katkılar sağlayan **Dr. Öğr. Üyesi Fehim Köylü**'ye teşekkürler.
+
+## İndirme
+
+En güncel sürümü indirmek için:
+
+- [v2.1.1 ZIP dosyasını indir](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases/download/v2.1.1/erciyes_lisansustu_tez_sablonu-2.1.1.zip)
+- [Tüm sürümleri görüntüle](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases)
 
 ## Kurulum ve İlk Kullanım
 1. Şablon içindeki **`tanimlamalar.tex`** dosyasını açın.
