@@ -302,13 +302,29 @@
   \addcontentsline{toc}{paragraph}{\protect\bf #1}}
 
 %% Ekler Tanımları (Appendix)
+
+%% Her bir ek bölümü başlığı (yeni sayfa açmaz, bold, sol hizalı)
+\newcommand{\th@EkBolumBasligi}[1]{%
+    \refstepcounter{chapter}%
+    \addcontentsline{toc}{tocKalin}{\protect\bf\thechapter\ #1}%
+    \vspace{14pt}%
+    \noindent{\th@BaslikFont\th@AltBolumBoyut\thechapter. #1\par}%
+    \vspace{6pt}%
+}
+
 \let\th@eskiAppendix\appendix
 \renewcommand\appendix{
     \@EklerVartrue
     \clearpage
+    \thispagestyle{plain}
     \addcontentsline{toc}{tocKalin}{\protect\bf\eklerToC}
     \th@eskiAppendix
-    \def\thechapter{\preappendixname-\arabic{chapter}}
+    \setcounter{chapter}{0}
+    \def\thechapter{EK \arabic{chapter}}
+    \vspace*{5pt}%
+    {\centering\th@BaslikFont\th@BolumBoyut EKLER\par\nobreak}%
+    \vspace{20pt}%
+    \renewcommand{\chapter}{\th@EkBolumBasligi}
     \captionsetup [table]{listof=false}
     \captionsetup [figure]{listof=false}
 }
@@ -342,7 +358,7 @@
                     }
 
 \def\@makechapterhead#1{
-    \thispagestyle{empty}%
+    \if@EklerVar\thispagestyle{plain}\else\thispagestyle{empty}\fi%
     \vspace*{\bolumUstBosluk}%
     \vspace*{-7mm}
     {\parindent \z@ \centering 

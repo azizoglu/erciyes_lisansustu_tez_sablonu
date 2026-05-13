@@ -1,22 +1,22 @@
-![Sürüm](https://img.shields.io/badge/S%C3%BCr%C3%BCm-v2.1.1-blue.svg)
+![Sürüm](https://img.shields.io/badge/S%C3%BCr%C3%BCm-v2.2.0-blue.svg)
 ![Güncellik](https://img.shields.io/badge/G%C3%BCncellik-23.02.2026_k%C4%B1lavuzu_ile_uyumlu-brightgreen.svg)
 [![Toplam İndirme](https://img.shields.io/github/downloads/azizoglu/erciyes_lisansustu_tez_sablonu/total?label=Toplam%20indirme&color=orange)](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases)
-[![v2.1.1 indirme](https://img.shields.io/github/downloads/azizoglu/erciyes_lisansustu_tez_sablonu/v2.1.1/total?label=v2.1.1%20indirme&color=blue)](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases/download/v2.1.1/erciyes_lisansustu_tez_sablonu-2.1.1.zip)
+[![v2.2.0 indirme](https://img.shields.io/github/downloads/azizoglu/erciyes_lisansustu_tez_sablonu/v2.2.0/total?label=v2.2.0%20indirme&color=blue)](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases/download/v2.2.0/erciyes_lisansustu_tez_sablonu-2.2.0.zip)
 
-Bu şablon, Erciyes Üniversitesi Fen Bilimleri Enstitüsü tez yazım kurallarına uygun olarak Doktora ve Yüksek Lisans tezlerini **LaTeX** ortamında pratik bir şekilde hazırlanabilmesi için oluşturulmuştur. Şablon, **23.02.2026 itibari ile güncel Fen Bilimleri Enstitüsü tez yazım kılavuzu ve şablonu gözetilerek** hazırlanmıştır.
+Bu şablon, Erciyes Üniversitesi Fen Bilimleri Enstitüsü tez yazım kurallarına uygun olarak Doktora ve Yüksek Lisans tezlerini **LaTeX** ortamında pratik bir şekilde hazırlanabilmesi için oluşturulmuştur. Şablon, **13.05.2026 itibari ile güncel Fen Bilimleri Enstitüsü tez yazım kılavuzu ve şablonu gözetilerek** hazırlanmıştır.
 
 > **⚠️ Önemli Uyarı:** 
-> Bu şablon Erciyes Üniversitesi veya Fen Bilimleri Enstitüsü tarafından sağlanan **resmi bir şablon değildir**. Açık kaynaklı olarak topluluğa katkı amacıyla hazırlanmıştır. Tezinizi enstitüye teslim etmeden önce çıktılarınızın kurallara uygunluğunu güncel tez yazım kılavuzuna göre **mutlaka gözden geçiriniz**. Doğabilecek herhangi bir form/format hatasından tezin yazarı sorumludur.
+> Tezinizi enstitüye teslim etmeden önce çıktılarınızın kurallara uygunluğunu güncel tez yazım kılavuzuna göre **mutlaka gözden geçiriniz**. Doğabilecek herhangi bir form/format hatasından tezin yazarı sorumludur.
 
 ## Geliştirici ve Teşekkür
-Güncel kılavuza uygun olan bu sürüm (v2.1.1), **Gökhan Azizoğlu** tarafından hazırlanmıştır.
+Güncel kılavuza uygun olan bu sürüm (v2.2.0), **Gökhan Azizoğlu** tarafından hazırlanmıştır.
 Geçmiş versiyonlarda ilk altyapıyı oluşturan ve kodlara değerli katkılar sağlayan **Dr. Öğr. Üyesi Fehim Köylü**'ye teşekkürler.
 
 ## İndirme
 
 En güncel sürümü indirmek için:
 
-- [v2.1.1 ZIP dosyasını indir](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases/download/v2.1.1/erciyes_lisansustu_tez_sablonu-2.1.1.zip)
+- [v2.2.0 ZIP dosyasını indir](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases/download/v2.2.0/erciyes_lisansustu_tez_sablonu-2.2.0.zip)
 - [Tüm sürümleri görüntüle](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases)
 
 ## Kurulum ve İlk Kullanım
@@ -37,6 +37,27 @@ Tezinizin Doktora mı yoksa Yüksek Lisans tezi mi olduğunu belirlemek için **
 * **İkinci Danışman:** **`tanimlamalar.tex`** dosyasında bulunan `%\ikinciDanisman{...}` ve `%\ikinciDanismanEng{...}` komutlarının başındaki **`%`** (yorum) işaretini silerek ikinci danışman adını içeriye tanımlayabilirsiniz. Kullanmak istemiyorsanız satırın başında `%` kalması veya içinin boş bırakılması halinde (`\ikinciDanisman{}`) ikinci danışman satırı şablonda tamamen gizlenir.
 * **Proje/Finansman Desteği:** Yine **`tanimlamalar.tex`** dosyasındaki `\destek{}` komutu, iç kapağın alt kısmına BAP vd. destek metinlerini yerleştirir. Eğer projeniz yoksa ya da desteği belirtmek istemiyorsanız bu satırı tamamen silebilir veya `\destek{}` şeklinde içini boş bırakabilirsiniz. Şablon alanı otomatik olarak kaldıracaktır.
 * **Jüri Onay Tarihi:** Onay sayfasındaki tarihi elle (statik olarak) yazdırmak isterseniz **`tanimlamalar.tex`** dosyasındaki `\onayTarih{Gün/Ay/Yıl}` komutuna veri girin. Girmezseniz, ıslak imza için ".... / .... / ......." tarzı noktalı alan eklenecektir.
+
+### Kaynakça Dil Ayarı (`language` Alanı)
+
+`erciyes.bst` stili, her kaynağın hangi dil kurallarıyla biçimlendirileceğini otomatik olarak tespit eder. Varsayılan dil **İngilizce**'dir; dolayısıyla `.bib` dosyanızdaki İngilizce kaynaklara özel bir şey yapmanıza gerek yoktur.
+
+Bir kaynak **Türkçe** ise `.bib` girdisine aşağıdaki gibi `language` alanını eklemeniz yeterlidir:
+
+```bibtex
+@article{ornek2026,
+  author   = {Azizoğlu, Gökhan},
+  title    = {Makale başlığı},
+  journal  = {Dergi Adı},
+  year     = {2026},
+  language = {turkish}   % veya: language = {tr}
+}
+```
+
+| `language` değeri | Uygulanan kurallar |
+|---|---|
+| `turkish` veya `tr` | Türkçe: "ve", "s.", "c.", "sy." vb. kısaltmalar |
+| *(belirtilmemiş)* | İngilizce: "and", "pp.", "vol.", "no." vb. kısaltmalar |
 
 ## İçerik Düzeni (Proje Yapısı)
 Aşağıda şablonun sunduğu genel kod ve dosya mimarisi (Klasör Ağacı) verilmiştir:

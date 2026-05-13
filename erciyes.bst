@@ -5,8 +5,7 @@
 %%
 %% ----------------------------------------
 %% Güncelleyen: Gökhan Azizoğlu 
-%% Sürüm Tarihi: 21.02.2026 (v2.0.0 Şablonu Uyumlu)
-%% (Eski bst mimarisini kuran Dr. Öğr. Üyesi Fehim Köylü'ye teşekkürlerle)
+%% Sürüm Tarihi: 13.05.2026 (v2.2.0)
 %% ----------------------------------------
  % ===============================================================
  % IMPORTANT NOTICE:
@@ -32,7 +31,8 @@
  %---------------------------------------------------------------------
 
 ENTRY
-  { address
+  {
+    address
     author
     booktitle
     chapter
@@ -43,6 +43,7 @@ ENTRY
     institution
     journal
     key
+    language
     month
     note
     number
@@ -60,26 +61,31 @@ ENTRY
   }
   {}
   { label }
-INTEGERS { output.state before.all mid.sentence after.sentence after.block }
+INTEGERS { output.state before.all mid.sentence after.sentence after.block after.quote }
 FUNCTION {init.state.consts}
 { #0 'before.all :=
   #1 'mid.sentence :=
   #2 'after.sentence :=
   #3 'after.block :=
+  #4 'after.quote :=
 }
 STRINGS { s t}
 FUNCTION {output.nonnull}
 { 's :=
   output.state mid.sentence =
     { ", " * write$ }
-    { output.state after.block =
-        { add.period$ write$
-          newline$
-          "\newblock " write$
-        }
-        { output.state before.all =
-            'write$
-            { add.period$ " " * write$ }
+    { output.state after.quote =
+        { " " * write$ }
+        { output.state after.block =
+            { add.period$ write$
+              newline$
+              "\newblock " write$
+            }
+            { output.state before.all =
+                'write$
+                { add.period$ " " * write$ }
+              if$
+            }
           if$
         }
       if$
@@ -101,6 +107,16 @@ FUNCTION {output.check}
     'output.nonnull
   if$
 }
+
+FUNCTION {output.check.quote}
+{ 't :=
+  duplicate$ empty$
+    { pop$ "empty " t * " in " * cite$ * warning$ }
+    { output.nonnull
+      after.quote 'output.state :=
+    }
+  if$
+}
 FUNCTION {fin.entry}
 { add.period$
   write$
@@ -110,7 +126,11 @@ FUNCTION {fin.entry}
 FUNCTION {new.block}
 { output.state before.all =
     'skip$
-    { after.block 'output.state := }
+    { output.state after.quote =
+        'skip$
+        { after.block 'output.state := }
+      if$
+    }
   if$
 }
 FUNCTION {new.sentence}
@@ -216,56 +236,136 @@ FUNCTION {space.word}
  % Here are the language-specific definitions for explicit words.
  % Each function has a name bbl.xxx where xxx is the English word.
  % The language selected here is ENGLISH
+
+FUNCTION {is.english}
+{ language empty$
+    { #1 }
+    { language "turkish" = language "tr" = or language "tur" = or
+        { #0 }
+        { #1 }
+      if$
+    }
+  if$
+}
+
 FUNCTION {bbl.and}
-{ "and"}
+{ is.english
+    { "and" }
+    { "ve" }
+  if$
+}
 
 FUNCTION {bbl.etal}
-{ "et~al." }
+{ is.english
+    { "et~al." }
+    { "vd." }
+  if$
+}
 
 FUNCTION {bbl.editors}
-{ "Eds." }
+{ is.english
+    { "Eds." }
+    { "Ed." }
+  if$
+}
 
 FUNCTION {bbl.editor}
-{ "Ed." }
+{ is.english
+    { "Ed." }
+    { "Ed." }
+  if$
+}
 
 FUNCTION {bbl.edby}
-{ "edited by" }
+{ is.english
+    { "edited by" }
+    { "ed." }
+  if$
+}
 
 FUNCTION {bbl.edition}
-{ "edition" }
+{ is.english
+    { "ed." }
+    { "baskı" }
+  if$
+}
 
 FUNCTION {bbl.volume}
-{ "volume" }
-
-FUNCTION {bbl.of}
-{ "of" }
+{ is.english
+    { "vol." }
+    { "c." }
+  if$
+}
 
 FUNCTION {bbl.number}
-{ "number" }
+{ is.english
+    { "no." }
+    { "sy" }
+  if$
+}
 
 FUNCTION {bbl.nr}
-{ "no." }
-
-FUNCTION {bbl.in}
-{ "in" }
+{ is.english
+    { "no." }
+    { "sy" }
+  if$
+}
 
 FUNCTION {bbl.pages}
-{ "" }
+{ is.english
+    { "pp." }
+    { "s." }
+  if$
+}
 
 FUNCTION {bbl.page}
-{ "" }
+{ is.english
+    { "p." }
+    { "s." }
+  if$
+}
 
 FUNCTION {bbl.chapter}
-{ "chapter" }
+{ is.english
+    { "ch." }
+    { "bölüm" }
+  if$
+}
+
+FUNCTION {bbl.in}
+{ is.english
+    { "in " }
+    { "" }
+  if$
+}
+
+FUNCTION {bbl.of}
+{ is.english
+    { "of" }
+    { "" }
+  if$
+}
 
 FUNCTION {bbl.techrep}
-{ "Technical Report" }
+{ is.english
+    { "Tech. Rep." }
+    { "Teknik Rapor" }
+  if$
+}
 
 FUNCTION {bbl.mthesis}
-{ "Yüksek Lisans Tezi" }
+{ is.english
+    { "Master's Thesis" }
+    { "Yüksek Lisans Tezi" }
+  if$
+}
 
 FUNCTION {bbl.phdthesis}
-{ "Doktora Tezi" }
+{ is.english
+    { "Ph.D. Thesis" }
+    { "Doktora Tezi" }
+  if$
+}
 
 MACRO {jan} {"January"}
 
@@ -382,7 +482,7 @@ FUNCTION {format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{vv~}{ll}{, jj}{, f{.}.}"
+      "{f{.}.~}{vv~}{ll}{, jj}"
       format.name$
       bibinfo bibinfo.check
       't :=
@@ -506,6 +606,9 @@ FUNCTION {format.note}
 FUNCTION {format.title}
 { title
   "title" bibinfo.check
+  duplicate$ empty$ 'skip$
+    { "``" swap$ * ",''" * }
+  if$
 }
 FUNCTION {output.bibitem}
 { newline$
@@ -675,10 +778,11 @@ FUNCTION {format.journal.pages}
     { swap$ duplicate$ empty$
         { pop$ pop$ format.pages }
         {
-          ":" *
+          ", " *
           swap$
           n.dashify
           "pages" bibinfo.check
+          bbl.pages swap$ tie.or.space.prefix * *
           *
         }
       if$
@@ -698,23 +802,19 @@ FUNCTION {format.journal.eid}
   if$
 }
 FUNCTION {format.vol.num.pages}
-{ volume field.or.null
-  duplicate$ empty$ 'skip$
+{ volume empty$
+    { "" }
+    { bbl.volume volume tie.or.space.prefix * * }
+  if$
+  number empty$
+    'skip$
     {
-      "volume" bibinfo.check
+      duplicate$ empty$
+        { pop$ bbl.nr number tie.or.space.prefix * * }
+        { ", " * bbl.nr number tie.or.space.prefix * * * }
+      if$
     }
   if$
-  bolden
-  number "number" bibinfo.check duplicate$ empty$ 'skip$
-    {
-      swap$ duplicate$ empty$
-        { "there's a number but no volume in " cite$ * warning$ }
-        'skip$
-      if$
-      swap$
-      "(" swap$ * ")" *
-    }
-  if$ *
   eid empty$
     { format.journal.pages }
     { format.journal.eid }
@@ -889,10 +989,9 @@ FUNCTION {format.org.or.pub}
       t empty$
         { address "address" bibinfo.check *
         }
-        { t *
-          address empty$
-            'skip$
-            { ", " * address "address" bibinfo.check * }
+        { address empty$
+            { t * }
+            { address "address" bibinfo.check * ": " * t * }
           if$
         }
       if$
@@ -910,14 +1009,12 @@ FUNCTION {format.organization.address}
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
-  format.date "year" output.check
-  date.block
-  format.title "title" output.check
+  format.title "title" output.check.quote
   crossref missing$
     {
       journal
       "journal" bibinfo.check
-    bolden
+    italik
       "journal" output.check
       format.vol.num.pages output
     }
@@ -925,6 +1022,7 @@ FUNCTION {article}
       format.pages output
     }
   if$
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -940,8 +1038,6 @@ FUNCTION {book}
       if$
     }
   if$
-  format.date "year" output.check
-  date.block
   format.btitle "title" output.check
   crossref missing$
     { format.bvolume output
@@ -953,17 +1049,17 @@ FUNCTION {book}
     }
   if$
   format.edition output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
 FUNCTION {booklet}
 { output.bibitem
   format.authors output
-  format.date output
-  date.block
-  format.title "title" output.check
+  format.title "title" output.check.quote
   howpublished "howpublished" bibinfo.check output
   address "address" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -980,8 +1076,6 @@ FUNCTION {inbook}
       if$
     }
   if$
-  format.date "year" output.check
-  date.block
   format.btitle "title" output.check
   crossref missing$
     {
@@ -996,6 +1090,7 @@ FUNCTION {inbook}
     }
   if$
   format.edition output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1003,19 +1098,7 @@ FUNCTION {inbook}
 FUNCTION {incollection}
 { output.bibitem
   format.authors "author" output.check
-  format.date "year" output.check
-  date.block
-  title empty$
-    'skip$
-    { title "t" change.case$
-      pages empty$
-        'skip$
-        { ", pp. " * format.pages * }
-      if$
-      "title" output.check
-    }
-  if$
-  new.block
+  format.title "title" output.check.quote
    crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
       format.bvolume output
@@ -1026,31 +1109,36 @@ FUNCTION {incollection}
     { format.incoll.inproc.crossref output.nonnull
     }
   if$
+  format.date "year" output.check
+    pages empty$
+    'skip$
+    { format.pages bbl.pages swap$ tie.or.space.prefix * * output }
+  if$
   format.note output
   fin.entry
 }
 FUNCTION {inproceedings}
 { output.bibitem
   format.authors "author" output.check
-  format.date "year" output.check
-  date.block
-  format.title "title" output.check
-  pages empty$
-    'skip$
-    { format.pages "pp. " swap$ * output }
-  if$
+  format.title "title" output.check.quote
   new.block 
   crossref missing$
     { % Booktitle (Kongre Adı) kısmını italik yapıyoruz:
-      booktitle italik "booktitle" output.check
+      booktitle empty$ 'skip$
+        { bbl.in booktitle italik * "booktitle" output.check }
+      if$
       month "month" bibinfo.check output
       address "address" bibinfo.check output
       organization "organization" bibinfo.check output
       publisher "publisher" bibinfo.check output
     }
     { format.incoll.inproc.crossref emphasize output.nonnull
-      format.pages output
     }
+  if$
+  format.date "year" output.check
+  pages empty$
+    'skip$
+    { format.pages bbl.pages swap$ tie.or.space.prefix * * output }
   if$
   format.note output
   fin.entry
@@ -1060,7 +1148,7 @@ FUNCTION {inproceedings}
 %   format.authors "author"  output.check
 %   format.date "year" output.check
 %   date.block
-%   format.title "title" output.check
+%   format.title "title" output.check.quote
 %   crossref missing$
 %     { format.in.ed.booktitle "booktitle" output.check
 %       italik
@@ -1094,8 +1182,6 @@ FUNCTION {manual}
     }
     { format.authors output.nonnull }
   if$
-  format.date output
-  date.block
   format.btitle "title" output.check
   author empty$
     { organization empty$
@@ -1111,6 +1197,7 @@ FUNCTION {manual}
     }
   if$
   format.edition output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1118,14 +1205,12 @@ FUNCTION {manual}
 FUNCTION {mastersthesis}
 { output.bibitem
   format.authors "author" output.check
-  format.date "year" output.check
-  date.block
-  format.title
-  "title" output.check
+  format.title "title" output.check.quote
   new.block
-  school "school" bibinfo.warn output
   bbl.mthesis format.thesis.type output.nonnull
+  school "school" bibinfo.warn output
   address "address" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1133,9 +1218,9 @@ FUNCTION {mastersthesis}
 FUNCTION {misc}
 { output.bibitem
   format.authors output
-  format.date output
   format.title output
   howpublished "howpublished" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
   empty.misc.check
@@ -1143,14 +1228,12 @@ FUNCTION {misc}
 FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
-  format.date "year" output.check
-  date.block
-  format.title
-  "title" output.check
+  format.title "title" output.check.quote
   new.block
-  school "school" bibinfo.warn output
   bbl.phdthesis format.thesis.type output.nonnull
+  school "school" bibinfo.warn output
   address "address" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1158,10 +1241,17 @@ FUNCTION {phdthesis}
 FUNCTION {format.url.urldate}
 { url empty$
     { "" }
-    { "(Web sayfas{\i}: \textbf{" url * "})" *
-      urldate empty$
-        'skip$
-        { ", (Eri{\c{s}}im tarihi: " * urldate * ")" * }
+    { urldate empty$
+        { is.english
+            { "[Online]. Available: " url * }
+            { "[Çevrimiçi]. Erişim Adresi: " url * }
+          if$
+        }
+        { is.english
+            { "Accessed: " urldate * ". [Online]. Available: " * url * }
+            { "Erişim Tarihi: " urldate * ". [Çevrimiçi]. Erişim Adresi: " * url * }
+          if$
+        }
       if$
     }
   if$
@@ -1170,9 +1260,16 @@ FUNCTION {format.url.urldate}
 FUNCTION {electronic}
 { output.bibitem
   format.authors "author" output.check
+  format.title "title" output.check.quote
+  organization empty$
+    { howpublished empty$
+        'skip$
+        { howpublished output }
+      if$
+    }
+    { organization output }
+  if$
   format.date "year" output.check
-  date.block
-  format.title "title" output.check
   new.block
   format.url.urldate output
   fin.entry
@@ -1185,6 +1282,7 @@ FUNCTION {presentation}
   format.organization.address "organization and address" output.check
   month "month" output.check
   year "year" output.check
+  format.date "year" output.check
   format.note output
   new.sentence
   type missing$ 'skip$
@@ -1200,8 +1298,6 @@ FUNCTION {proceedings}
     }
     { format.editors output.nonnull }
   if$
-  format.date "year" output.check
-  date.block
   format.btitle "title" output.check
   format.bvolume output
   format.number.series output
@@ -1223,6 +1319,7 @@ FUNCTION {proceedings}
       if$
      }
   if$
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1230,13 +1327,12 @@ FUNCTION {proceedings}
 FUNCTION {techreport}
 { output.bibitem
   format.authors "author" output.check
-  format.date "year" output.check
-  date.block
-  format.title
-  "title" output.check
-  format.tr.number output.nonnull
+  format.title "title" output.check.quote
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
+  format.tr.number output.nonnull
+  month "month" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1244,10 +1340,118 @@ FUNCTION {techreport}
 FUNCTION {unpublished}
 { output.bibitem
   format.authors "author" output.check
-  format.date output
-  date.block
-  format.title "title" output.check
+  format.title "title" output.check.quote
   format.note "note" output.check
+  format.date "year" output.check
+  fin.entry
+}
+
+
+FUNCTION {dataset}
+{ output.bibitem
+  author empty$
+    { institution empty$
+        'skip$
+        { institution "institution" output.check }
+      if$
+    }
+    { format.authors "author" output.check }
+  if$
+  month empty$
+    { year empty$
+        'skip$
+        { year output }
+      if$
+    }
+    { year empty$
+        { month output }
+        { month " " * year * output }
+      if$
+    }
+  if$
+  format.title "title" output.check.quote
+  new.block
+  publisher empty$
+    { organization empty$
+        'skip$
+        { organization output }
+      if$
+    }
+    { publisher output }
+  if$
+  url empty$
+    'skip$
+    { new.block
+      is.english
+        { "[Online]. Available: " url * output }
+        { "[Çevrimiçi]. Erişim Adresi: " url * output }
+      if$
+    }
+  if$
+  fin.entry
+}
+
+FUNCTION {patent}
+{ output.bibitem
+  format.authors "author" output.check
+  format.title "title" output.check.quote
+  new.block
+  type empty$
+    { "Patent" number empty$ 'skip$ { " " * number * } if$ output }
+    { type number empty$ 'skip$ { " " * number * } if$ output }
+  if$
+  month empty$
+    'skip$
+    { month output }
+  if$
+  year empty$
+    'skip$
+    { year output }
+  if$
+  fin.entry
+}
+
+
+FUNCTION {format.software.url}
+{ url empty$
+    { "" }
+    { urldate empty$
+        { is.english
+            { "[Online]. Available: " url * }
+            { "[Çevrimiçi/DVD/Video]. Erişim Adresi: " url * }
+          if$
+        }
+        { is.english
+            { "Accessed: " urldate * ". [Online]. Available: " * url * }
+            { "Erişim Tarihi: " urldate * ". [Çevrimiçi/DVD/Video]. Erişim Adresi: " * url * }
+          if$
+        }
+      if$
+    }
+  if$
+}
+
+FUNCTION {software}
+{ output.bibitem
+  format.authors "author" output.check
+  title empty$
+    'skip$
+    { title italik "title" output.check }
+  if$
+  year empty$
+    'skip$
+    { "(" year * ")" * output }
+  if$
+  publisher empty$
+    { organization empty$
+        'skip$
+        { organization output }
+      if$
+    }
+    { publisher output }
+  if$
+  new.block
+  format.software.url output
   fin.entry
 }
 
@@ -1288,6 +1492,6 @@ FUNCTION {end.bib}
   "\end{thebibliography}" write$ newline$
 }
 EXECUTE {end.bib}
-%% Bitis: Gökhan Azizoğlu (v2.0.0)
+%% Bitis: Gökhan Azizoğlu (v2.2.0)
 %% End of customized bst file
 %% End of file `erciyes.bst'.

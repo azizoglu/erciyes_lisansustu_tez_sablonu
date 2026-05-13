@@ -2,6 +2,13 @@
 
 Bu dosya, Erciyes Üniversitesi Fen Bilimleri Enstitüsü Doktora/Yüksek Lisans Tez Şablonu'ndaki sürüm güncellemelerini listelemektedir.
 
+## [v2.2.0] — 2026-05-13
+- Referans sistemi **IEEE** standardı olarak değiştirildi. Tüm kaynak türleri (makale, bildiri, tez, kitap, elektronik kaynak vb.) IEEE atıf kurallarına uygun biçimde formatlanacak şekilde güncellendi.
+- Şablon örnek bölüm içerikleri yeniden düzenlendi: `bolum1.tex` (Giriş), `bolum2.tex` (Yöntem ve Materyal), `bolum3.tex` (Bulgular) ve `bolum4.tex` (Tartışma-Sonuç ve Öneriler) tez yapısına uygun taslak içeriklerle güncellendi.
+- **Ekler bölümü** (`cls/basliklar.tex`) yeniden düzenlendi. `\appendix` komutu "EKLER" başlığını sayfa numarasıyla birlikte aynı sayfada gösterecek şekilde güncellendi. Ekler altında kullanılan her `\chapter{}` ise yeni sayfa açmadan, “EK 1. Başlık” formatında, sol hizalı ve kalın başlık olarak görüntülenecek biçimde yapılandırıldı. Ayrıca bu başlıkların içindekiler listesine kalın (`tocKalin`) girdi olarak eklenmesi sağlandı.
+- Eklerdeki şekil ve tablo numaralandırması düzeltildi. `\thefigure` tanımı, `\arabic{chapter}` yerine `\thechapter` kullanacak şekilde güncellendi. Böylece ekler bölümündeki şekil numaraları “Şekil EK 1.1” formatında gösterilmektedir.
+- Özgeçmiş dosyasındaki (`ozgecmis.tex`)  yayın listesi IEEE referans formatına uygun hale getirildi. Dergi makalesi, bildiri, kitap bölümü ve tez türleri için ayrı ayrı örnek referans şablonları eklendi.
+
 ## [v2.1.1] — 2026-04-21
 - Şekil açıklamaları (`\caption`) ile sonraki paragraf arasındaki boşluk düzenlendi: `caption` paketindeki `belowskip=-12pt` (negatif boşluk) değeri `belowskip=0pt` olarak güncellendi ve şekil başlığının altında tek satırlık paragraf boşluğu eklendi.
 
