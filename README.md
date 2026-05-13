@@ -1,9 +1,9 @@
 ![Sürüm](https://img.shields.io/badge/S%C3%BCr%C3%BCm-v2.2.0-blue.svg)
-![Güncellik](https://img.shields.io/badge/G%C3%BCncellik-23.02.2026_k%C4%B1lavuzu_ile_uyumlu-brightgreen.svg)
+![Güncellik](https://img.shields.io/badge/G%C3%BCncellik-18_Mart_2026_k%C4%B1lavuzu_ile_uyumlu-brightgreen.svg)
 [![Toplam İndirme](https://img.shields.io/github/downloads/azizoglu/erciyes_lisansustu_tez_sablonu/total?label=Toplam%20indirme&color=orange)](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases)
 [![v2.2.0 indirme](https://img.shields.io/github/downloads/azizoglu/erciyes_lisansustu_tez_sablonu/v2.2.0/total?label=v2.2.0%20indirme&color=blue)](https://github.com/azizoglu/erciyes_lisansustu_tez_sablonu/releases/download/v2.2.0/erciyes_lisansustu_tez_sablonu-2.2.0.zip)
 
-Bu şablon, Erciyes Üniversitesi Fen Bilimleri Enstitüsü tez yazım kurallarına uygun olarak Doktora ve Yüksek Lisans tezlerini **LaTeX** ortamında pratik bir şekilde hazırlanabilmesi için oluşturulmuştur. Şablon, **13.05.2026 itibari ile güncel Fen Bilimleri Enstitüsü tez yazım kılavuzu ve şablonu gözetilerek** hazırlanmıştır.
+Bu şablon, Erciyes Üniversitesi Fen Bilimleri Enstitüsü tez yazım kurallarına uygun olarak Doktora ve Yüksek Lisans tezlerini **LaTeX** ortamında pratik bir şekilde hazırlanabilmesi için oluşturulmuştur. Şablon, **18 Mart 2026 tarihli güncel Fen Bilimleri Enstitüsü tez yazım kılavuzu ve şablonu gözetilerek** hazırlanmıştır.
 
 > **⚠️ Önemli Uyarı:** 
 > Tezinizi enstitüye teslim etmeden önce çıktılarınızın kurallara uygunluğunu güncel tez yazım kılavuzuna göre **mutlaka gözden geçiriniz**. Doğabilecek herhangi bir form/format hatasından tezin yazarı sorumludur.
